@@ -1,12 +1,65 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Olá, {{ request.user.username }}!</h1>
-    
-</body>
-</html>
+{% extends 'base.html' %}
+
+{% block content %}
+  {% if request.user.is_authenticated %}
+
+    <div class="materias-container">
+
+      <a class="nova-materia-btn" href="{% url 'studies:cadastrar_materia' %}">
+        Nova Matéria
+      </a>
+
+      {% if not materias %}
+
+        <p>Sem matérias cadastradas</p>
+
+      {% else %}
+
+        {% for materia in materias %}
+
+          <div class="materia-card" style="border-left: 5px solid {{ materia.cor }};">
+
+            <div class="materia-content">
+              <h3>{{ materia.nome }}</h3>
+              <p>{{ materia.descricao }}</p>
+            </div>
+
+            <div class="materia-actions">
+
+              <a
+                class="editar-btn"
+                {% comment %} href="{% url 'studies:editar_materia' materia.id %}" {% endcomment %}
+              >
+                Editar
+              </a>
+
+              <form
+                method="POST"
+                {% comment %} action="{% url 'studies:remover_materia' materia.id %}" {% endcomment %}
+              >
+                {% csrf_token %}
+
+                <button
+                  type="submit"
+                  class="remover-btn"
+                >
+                  Remover
+                </button>
+              </form>
+
+            </div>
+
+          </div>
+
+        {% endfor %}
+
+      {% endif %}
+
+    </div>
+
+  {% else %}
+
+    <p>shape</p>
+
+  {% endif %}
+{% endblock %}

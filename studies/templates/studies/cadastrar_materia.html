@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <form method="POST">
+    {% csrf_token %}
+    
+    {% if messages %}
+        {% for message in messages %}
+            <p>{{ message }}</p>
+        {% endfor %}
+    {% endif %}
+
+    <label for="nome">
+      <span>Matéria:</span>
+      <input type="text" id="nome" name="nome" placeholder="Ex: Português" />
+    </label>
+    <label for="descricao">
+      <span>Descrição</span>
+      <textarea name="descricao" id="descricao" rows="5"></textarea>
+    </label>
+    <label for="cor">
+      <select name="cor" id="cor">
+        <option value="green">Green</option>
+        <option value="blue">Blue</option>
+        <option value="gray">Gray</option>
+        <option value="yellow">Yellow</option>
+      </select>
+    </label>
+
+    <button type="submit">cadastrar</button>
+  </form>
+{% endblock %}

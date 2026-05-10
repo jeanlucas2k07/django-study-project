@@ -1,3 +1,50 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
+from .models import Materia
+from django.contrib import messages
 
 # Create your views here.
+@login_required
+def cadastrar_materia_view(request):
+    if request.method == 'POST':
+        cor = request.POST.get('cor')
+        descricao = request.POST.get('descricao')
+        nome = request.POST.get('nome')
+
+        if not cor or not descricao or not nome:
+            messages.error(
+                request=request,
+                message='Preencha todos os campos'
+            )
+        
+            return redirect(
+                'studies:cadastrar_materia'
+            )
+        
+        try:
+            Materia.objects.create(
+                user=request.user,
+                nome=nome,
+                descricao= descricao,
+                cor=cor
+            )
+
+            Materia.save()
+
+            return redirect('core:home')
+
+        except Exception as e:
+            ...
+        
+    
+    return render(
+            request=request,
+            template_name='studies/cadastrar_materia.html'
+        )
+        
+@login_required
+def deleter_materia_view(request, materia_id):
+    materia = Materia.objects.filter(id=materia_id)
+    
+    if request.method == 'POST':
+        ...

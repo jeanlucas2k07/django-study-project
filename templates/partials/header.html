@@ -1,0 +1,15 @@
+<header>
+    <h1><a href="{% url 'core:home' %}">StudyApp.com</a></h1>
+
+    <div>
+        {% if request.user.is_authenticated %}
+            <div>
+                {{ request.user.username }}
+                <span class="online-dot"></span>
+            </div>
+            {% else %}
+            <a href="{% url 'auth:login' %}">Entrar</a>
+            <a href="{% url 'auth:register' %}">Criar conta</a>
+        {% endif %}
+    </div>
+</header>
