@@ -1,0 +1,33 @@
+{% extends 'base_auth.html' %}
+
+{% block form_container %}
+  <form method="POST">
+    {% csrf_token %}
+    <label for="username">
+      <span>Nome de Usuário:</span>
+      <input type="text" id="username" name="username" placeholder="Ex: José2007" />
+    </label>
+    <label for="email">
+      <span>E-mail:</span>
+      <input type="email" id="email" name="email" placeholder="Ex: jose@email.com" />
+    </label>
+    <label for="password">
+      <span>Senha:</span>
+      <input type="password" id="password" name="password" placeholder="Ex: ********" />
+    </label>
+    <label for="confirm_password">
+      <span>Confirmar Senha:</span>
+      <input type="password" id="confirm_password" name="confirm_password" placeholder="Ex: ********" />
+    </label>
+
+    {% if messages %}
+      {% for message in messages %}
+        <p>{{ message }}</p>
+      {% endfor %}
+    {% endif %}
+
+    <button type="submit">Registrar</button>
+
+    <a href="{% url 'auth:login' %}">Já tem uma conta? Faça Login.</a>
+  </form>
+{% endblock %}
