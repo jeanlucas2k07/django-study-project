@@ -28,14 +28,15 @@
 
               <a
                 class="editar-btn"
-                {% comment %} href="{% url 'studies:editar_materia' materia.id %}" {% endcomment %}
+                href="{% url 'studies:editar_materia' materia.id %}"
               >
                 Editar
               </a>
 
               <form
                 method="POST"
-                {% comment %} action="{% url 'studies:remover_materia' materia.id %}" {% endcomment %}
+                action="{% url 'studies:deletar_materia' materia.id %}"
+                onsubmit="return confirm('Deseja remover esta tarefa?')"
               >
                 {% csrf_token %}
 
