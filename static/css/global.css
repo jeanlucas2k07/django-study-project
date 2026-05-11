@@ -60,7 +60,51 @@ main {
 	z-index: 1;
 }
 
-.conteiner,
+.timer-container {
+	display: flex;
+	flex-direction: column;
+	min-width: 100%;
+	justify-content: center;
+	align-items: center;
+}
+
+.timer .display, .timer .buttons {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.timer .buttons {
+	gap: 1rem;
+}
+
+.timer .buttons button {
+	background-color: rgba(255, 145, 0, 0.315);
+	border-radius: 30px;
+	padding: 1rem;
+
+	border: 1px solid #ffa705;
+
+	font-weight: 600;
+
+	cursor: pointer;
+
+	color: var(--text);
+
+	box-shadow: 0 16px 35px rgba(107, 64, 0, 0.28);
+
+	transition: all 0.3s ease-in-out;
+}
+
+.timer .buttons button:hover{
+	transform: translateY(-3px);
+}
+
+.timer .display p {
+	font-size: 3rem;
+}
+
+.conteiner, .timer-container,
 main > form {
 	width: min(1120px, calc(100% - 2rem));
 	margin: 0 auto;
