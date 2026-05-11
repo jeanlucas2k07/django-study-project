@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+<form method="POST">
+    {% csrf_token %}
+
+    <label for="materia">
+        <span>Selecione Uma Materia</span>
+        
+        <select name="materia" id="materia">
+            <option value="">------</option>
+            {% for materia in materias %}
+            <option value="{{ materia.nome }}">{{ materia.nome }}</option>
+            {% endfor %}
+        </select>
+    </label>
+
+    <label for="observacao">
+        <span>Observação (opcional)</span>
+        <textarea name="observacao" id="observacao" rows="5" placeholder="Ex: Revisão de Simulados"></textarea>
+    </label>
+    
+    <button type="submit">Criar Sessão</button>
+</form>
+{% endblock content %}

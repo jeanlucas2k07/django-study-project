@@ -22,3 +22,45 @@ class Materia(models.Model):
     def __str__(self):
         """Unicode representation of Materia."""
         return self.nome
+    
+class SessaoEstudo(models.Model):
+
+    user = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        related_name='sessoes_estudo'
+    )
+
+    materia = models.ForeignKey(
+        'Materia',
+        on_delete=models.CASCADE,
+        related_name='sessoes'
+    )
+
+    duracao = models.PositiveIntegerField(
+        'duração'
+    )
+    
+    observacoes = models.TextField(
+        'observações',
+        blank=True,
+        null=True
+    )
+
+    data_estudo = models.DateField(
+        'data do estudo',
+        auto_now_add=True
+    )
+
+    created_at = models.DateTimeField(
+        'criado em',
+        auto_now_add=True
+    )
+
+    class Meta:
+        verbose_name = 'Sessão de Estudo'
+        verbose_name_plural = 'Sessões de Estudo'
+        ordering = ['-created_at']
+
+    def __str__(self):
+        return f'{self.materia.nome} - {self.user.username}'

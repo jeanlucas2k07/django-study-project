@@ -29,8 +29,6 @@ def cadastrar_materia_view(request):
                 cor=cor
             )
 
-            Materia.save()
-
             return redirect('core:home')
 
         except Exception as e:
@@ -86,3 +84,15 @@ def deleter_materia_view(request, materia_id):
         materia.delete()
 
     return redirect('core:home')
+
+@login_required
+def criar_sessao_view(request):
+    materias = Materia.objects.filter(user=request.user)
+    context={
+        "materias": materias
+    }
+    return render(
+        request=request, 
+        template_name='studies/criar_sessao.html',
+        context=context
+    )
