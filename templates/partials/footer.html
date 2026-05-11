@@ -1,4 +1,12 @@
 <hr>
 <footer>
-    <p>&copy; StudyApp - Todos os Direitos Reservados</p>
+    <p>Study App</p>
+
+    <div class="footer-links">
+        <a href="{% url 'core:home' %}">Início</a>
+        <a href="{% url 'auth:login' %}">Login</a>
+        <a href="{% url 'auth:register' %}">Cadastro</a>
+    </div>
+
+    <p>Foco de hoje, progresso de amanhã.</p>
 </footer>

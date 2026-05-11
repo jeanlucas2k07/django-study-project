@@ -383,6 +383,218 @@ form p {
 	width: 100%;
 }
 
+.landing-hero {
+	display: grid;
+	grid-template-columns: minmax(0, 1.25fr) minmax(320px, 0.85fr);
+	gap: 1.5rem;
+	align-items: center;
+	padding: 3rem 0 1rem;
+}
+
+.landing-copy,
+.hero-panel,
+.section-block,
+.cta-block {
+	border: 1px solid var(--line);
+	background: rgba(7, 12, 22, 0.62);
+	backdrop-filter: blur(18px);
+	box-shadow: var(--shadow);
+}
+
+.landing-copy,
+.cta-block {
+	border-radius: 30px;
+	padding: 2rem;
+}
+
+.landing-copy h1 {
+	margin: 0.8rem 0 1rem;
+	font-size: clamp(2.35rem, 5vw, 4.9rem);
+	line-height: 0.96;
+	letter-spacing: -0.05em;
+}
+
+.landing-copy p,
+.cta-block p,
+.feature-card p,
+.method-card p {
+	margin: 0;
+	color: var(--muted);
+	line-height: 1.7;
+}
+
+.eyebrow {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.5rem;
+	font-size: 0.82rem;
+	font-weight: 700;
+	letter-spacing: 0.14em;
+	text-transform: uppercase;
+	color: var(--accent);
+}
+
+.eyebrow::before {
+	content: '';
+	width: 0.7rem;
+	height: 0.7rem;
+	border-radius: 999px;
+	background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+}
+
+.hero-actions {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.9rem;
+	margin-top: 1.5rem;
+}
+
+.primary-btn,
+.secondary-btn {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	padding: 0.95rem 1.2rem;
+	border-radius: 999px;
+	font-weight: 700;
+	transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+}
+
+.primary-btn {
+	background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+	color: #04111f;
+	box-shadow: 0 16px 35px rgba(56, 189, 248, 0.28);
+}
+
+.secondary-btn {
+	border: 1px solid var(--line);
+	background: rgba(255, 255, 255, 0.04);
+	color: var(--text);
+}
+
+.primary-btn:hover,
+.secondary-btn:hover {
+	transform: translateY(-1px);
+}
+
+.hero-panel {
+	display: grid;
+	gap: 1rem;
+	padding: 1.5rem;
+	border-radius: 28px;
+	grid-template-columns: 1fr;
+}
+
+.hero-stat {
+	padding: 1rem 1.1rem;
+	border-radius: 20px;
+	border: 1px solid rgba(255, 255, 255, 0.08);
+	background: rgba(255, 255, 255, 0.05);
+}
+
+.hero-stat span {
+	display: block;
+	margin-bottom: 0.35rem;
+	font-size: 0.85rem;
+	color: var(--muted);
+	text-transform: uppercase;
+	letter-spacing: 0.08em;
+}
+
+.hero-stat strong {
+	font-size: 1.3rem;
+	letter-spacing: -0.03em;
+}
+
+.hero-stat-accent {
+	background: linear-gradient(135deg, rgba(125, 211, 252, 0.12), rgba(56, 189, 248, 0.08));
+}
+
+.section-block,
+.cta-block {
+	margin-top: 1.25rem;
+	border-radius: 30px;
+	padding: 1.8rem;
+}
+
+.section-heading {
+	margin-bottom: 1.25rem;
+}
+
+.section-heading h2,
+.cta-block h2 {
+	margin: 0.5rem 0 0;
+	font-size: clamp(1.6rem, 3vw, 2.45rem);
+	letter-spacing: -0.04em;
+	line-height: 1.05;
+}
+
+.feature-grid,
+.method-grid {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: 1rem;
+}
+
+.feature-grid {
+	grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
+.feature-card,
+.method-card {
+	padding: 1.2rem;
+	border-radius: 22px;
+	border: 1px solid rgba(255, 255, 255, 0.08);
+	background: rgba(255, 255, 255, 0.04);
+	min-height: 100%;
+}
+
+.feature-card h3,
+.method-card h3 {
+	margin: 0 0 0.55rem;
+	font-size: 1.05rem;
+	letter-spacing: -0.02em;
+}
+
+.methods-block {
+	background: linear-gradient(180deg, rgba(7, 12, 22, 0.48), rgba(7, 12, 22, 0.78));
+}
+
+.cta-block {
+	text-align: center;
+	padding: 2.25rem 1.5rem;
+	background:
+		radial-gradient(circle at top, rgba(56, 189, 248, 0.14), transparent 38%),
+		rgba(7, 12, 22, 0.72);
+}
+
+.cta-block p {
+	max-width: 52ch;
+	margin: 0.9rem auto 1.3rem;
+}
+
+.cta-block .primary-btn {
+	min-width: 200px;
+}
+
+footer p + .footer-links,
+footer .footer-links {
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+	gap: 1rem;
+	margin: 0.8rem 0;
+}
+
+footer .footer-links a {
+	color: var(--muted);
+	transition: color 0.2s ease;
+}
+
+footer .footer-links a:hover {
+	color: var(--text);
+}
+
 @media (max-width: 720px) {
 	header {
 		flex-direction: column;
@@ -411,5 +623,29 @@ form p {
 	main > form {
 		padding: 1.2rem;
 		border-radius: 22px;
+	}
+
+	.landing-hero,
+	.feature-grid,
+	.method-grid {
+		grid-template-columns: 1fr;
+	}
+
+	.landing-copy,
+	.hero-panel,
+	.section-block,
+	.cta-block {
+		padding: 1.25rem;
+		border-radius: 24px;
+	}
+
+	.hero-actions {
+		flex-direction: column;
+	}
+
+	.primary-btn,
+	.secondary-btn,
+	.cta-block .primary-btn {
+		width: 100%;
 	}
 }

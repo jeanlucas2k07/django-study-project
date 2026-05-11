@@ -49,7 +49,106 @@
       {% endif %}
     </div>
   {% else %}
-    <p>shape</p>
+    <section class="landing-hero">
+      <div class="landing-copy">
+        <span class="eyebrow">Study App</span>
+        <h1>Estude com foco, organize suas matérias e acompanhe seu progresso em um só lugar.</h1>
+        <p>
+          Uma plataforma minimalista para transformar sua rotina de estudos em sessões mais
+          claras, consistentes e produtivas.
+        </p>
+
+        <div class="hero-actions">
+          <a class="primary-btn" href="{% url 'auth:register' %}">Começar agora</a>
+          <a class="secondary-btn" href="{% url 'auth:login' %}">Fazer login</a>
+        </div>
+      </div>
+
+      <div class="hero-panel">
+        <div class="hero-stat">
+          <span>Hoje</span>
+          <strong>3 sessões concluídas</strong>
+        </div>
+        <div class="hero-stat hero-stat-accent">
+          <span>Foco</span>
+          <strong>+ produtividade</strong>
+        </div>
+        <div class="hero-stat">
+          <span>Organização</span>
+          <strong>matérias em ordem</strong>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-block">
+      <div class="section-heading">
+        <span class="eyebrow">Funcionalidades</span>
+        <h2>Tudo que você precisa para estudar melhor.</h2>
+      </div>
+
+      <div class="feature-grid">
+        <article class="feature-card">
+          <h3>Cronômetro de estudos</h3>
+          <p>Monitore suas sessões para manter ritmo e evitar dispersão.</p>
+        </article>
+
+        <article class="feature-card">
+          <h3>Organização por matérias</h3>
+          <p>Centralize conteúdos, descrições e prioridades em um único painel.</p>
+        </article>
+
+        <article class="feature-card">
+          <h3>Métricas de produtividade</h3>
+          <p>Acompanhe sua consistência e veja sua evolução com mais clareza.</p>
+        </article>
+
+        <article class="feature-card">
+          <h3>Grupos de estudo</h3>
+          <p>Encontre um espaço mais colaborativo para estudar em conjunto.</p>
+        </article>
+
+        <article class="feature-card">
+          <h3>Rankings e social</h3>
+          <p>Transforme progresso em motivação com acompanhamento social leve.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section-block methods-block">
+      <div class="section-heading">
+        <span class="eyebrow">Método</span>
+        <h2>Uma rotina forte nasce de pequenas sessões bem executadas.</h2>
+      </div>
+
+      <div class="method-grid">
+        <article class="method-card">
+          <h3>Foco</h3>
+          <p>Reduza distrações e direcione energia para o que realmente importa.</p>
+        </article>
+
+        <article class="method-card">
+          <h3>Consistência</h3>
+          <p>Crie uma cadência de estudo sustentável para evoluir todos os dias.</p>
+        </article>
+
+        <article class="method-card">
+          <h3>Sessões de estudo</h3>
+          <p>Divida o tempo em blocos objetivos para manter a mente ativa.</p>
+        </article>
+
+        <article class="method-card">
+          <h3>Produtividade</h3>
+          <p>Veja o progresso crescer com uma organização clara e simples de usar.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="cta-block">
+      <span class="eyebrow">Comece agora</span>
+      <h2>Crie sua rotina de estudos com mais foco e menos ruído.</h2>
+      <p>Entre para o Study App e organize sua semana com mais disciplina e clareza.</p>
+      <a class="primary-btn" href="{% url 'auth:register' %}">Criar conta grátis</a>
+    </section>
   {% endif %}
 {% endblock %}
 
