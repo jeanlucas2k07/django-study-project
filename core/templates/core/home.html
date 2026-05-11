@@ -3,24 +3,6 @@
 
 {% block content %}
   {% if request.user.is_authenticated %}
-    <div class="timer-container">
-      <div class="timer">
-        <div class="display">
-          <p class="digit" id="hours">00</p>
-          <p class="separator">:</p>
-          <p class="digit" id="minutes">00</p>
-          <p class="separator">:</p>
-          <p class="digit" id="seconds">00</p>
-        </div>
-
-        <div class="buttons">
-          <button id="startBtn">Iniciar</button>
-          <button id="pauseBtn" style="display: none;">Pausar</button>
-          <button id="resumeBtn" style="display: none;">Continuar</button>
-          <button id="resetBtn">Resetar</button>
-        </div>
-      </div>
-    </div>
 
     <div class="materias-container">
       <a class="nova-materia-btn" href="{% url 'studies:cadastrar_materia' %}">Nova Matéria</a>
@@ -29,34 +11,33 @@
         <p>Sem matérias cadastradas</p>
       {% else %}
         {% for materia in materias %}
-          <div class="materia-card" style="border-left: 5px solid {{ materia.cor }};">
-            <div class="materia-content">
-              <h3>{{ materia.nome }}</h3>
-              <p>{{ materia.descricao }}</p>
+          <a href="{% url 'studies:nova_sessao' %}">
+            <div class="materia-card" style="border-left: 5px solid {{ materia.cor }};">
+              <div class="materia-content">
+                <h3>{{ materia.nome }}</h3>
+                <p>{{ materia.descricao }}</p>
+              </div>
+
+              <div class="materia-actions">
+                <a class="editar-btn" href="{% url 'studies:editar_materia' materia.id %}">Editar</a>
+
+                <form method="POST" action="{% url 'studies:deletar_materia' materia.id %}" onsubmit="return confirm('Deseja remover esta tarefa?')">
+                  {% csrf_token %}
+
+                  <button type="submit" class="remover-btn">Remover</button>
+                </form>
+              </div>
             </div>
-
-            <div class="materia-actions">
-              <a class="editar-btn" href="{% url 'studies:editar_materia' materia.id %}">Editar</a>
-
-              <form method="POST" action="{% url 'studies:deletar_materia' materia.id %}" onsubmit="return confirm('Deseja remover esta tarefa?')">
-                {% csrf_token %}
-
-                <button type="submit" class="remover-btn">Remover</button>
-              </form>
-            </div>
-          </div>
+          </a>
         {% endfor %}
       {% endif %}
     </div>
   {% else %}
     <section class="landing-hero">
       <div class="landing-copy">
-        <span class="eyebrow">Study App</span>
+        <span class="eyebrow">Deepora</span>
         <h1>Estude com foco, organize suas matérias e acompanhe seu progresso em um só lugar.</h1>
-        <p>
-          Uma plataforma minimalista para transformar sua rotina de estudos em sessões mais
-          claras, consistentes e produtivas.
-        </p>
+        <p>Uma plataforma minimalista para transformar sua rotina de estudos em sessões mais claras, consistentes e produtivas.</p>
 
         <div class="hero-actions">
           <a class="primary-btn" href="{% url 'auth:register' %}">Começar agora</a>
@@ -146,12 +127,8 @@
     <section class="cta-block">
       <span class="eyebrow">Comece agora</span>
       <h2>Crie sua rotina de estudos com mais foco e menos ruído.</h2>
-      <p>Entre para o Study App e organize sua semana com mais disciplina e clareza.</p>
+      <p>Entre para o Deepora e organize sua semana com mais disciplina e clareza.</p>
       <a class="primary-btn" href="{% url 'auth:register' %}">Criar conta grátis</a>
     </section>
   {% endif %}
-{% endblock %}
-
-{% block scripts %}
-  <script src="{% static 'js/timer.js' %}"></script>
 {% endblock %}

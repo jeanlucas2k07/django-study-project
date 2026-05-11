@@ -1,25 +1,49 @@
-{% extends "base.html" %}
-
+{% extends 'base.html' %}
+{% load static %}
 {% block content %}
-<form method="POST">
+  <div class="timer-container">
+    <div class="timer">
+      <div class="display">
+        <p class="digit" id="hours">00</p>
+        <p class="separator">:</p>
+        <p class="digit" id="minutes">00</p>
+        <p class="separator">:</p>
+        <p class="digit" id="seconds">00</p>
+      </div>
+
+      <div class="buttons">
+        <button id="startBtn">Iniciar</button>
+        <button id="pauseBtn" style="display: none;">Pausar</button>
+        <button id="resumeBtn" style="display: none;">Continuar</button>
+        <button id="resetBtn">Resetar</button>
+      </div>
+    </div>
+  </div>
+
+  <form method="POST">
     {% csrf_token %}
 
     <label for="materia">
-        <span>Selecione Uma Materia</span>
-        
-        <select name="materia" id="materia">
-            <option value="">------</option>
-            {% for materia in materias %}
-            <option value="{{ materia.nome }}">{{ materia.nome }}</option>
-            {% endfor %}
-        </select>
+      <span>Selecione Uma Materia</span>
+
+      <select name="materia" id="materia">
+        <option value="">------</option>
+        {% for materia in materias %}
+          <option value="{{ materia.nome }}">{{ materia.nome }}</option>
+        {% endfor %}
+      </select>
     </label>
 
     <label for="observacao">
-        <span>Observação (opcional)</span>
-        <textarea name="observacao" id="observacao" rows="5" placeholder="Ex: Revisão de Simulados"></textarea>
+      <span>Observação (opcional)</span>
+      <textarea name="observacao" id="observacao" rows="5" placeholder="Ex: Revisão de Simulados"></textarea>
     </label>
-    
+
     <button type="submit">Criar Sessão</button>
-</form>
-{% endblock content %}
+  </form>
+{% endblock %}
+
+
+{% block scripts %}
+  <script src="{% static 'js/timer.js' %}"></script>
+{% endblock %}

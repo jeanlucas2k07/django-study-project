@@ -63,6 +63,8 @@ function resumetimer() {
 
 function resetTimer() {
     clearInterval(interval);
+    isPaused = false;
+
 
     hours = 0;
     minutes = 0;
