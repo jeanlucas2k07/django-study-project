@@ -2,7 +2,9 @@
 {% load static %}
 {% block content %}
   <div class="timer-container">
-    <div class="timer">
+    <p id="isPaused" style="color: #ff2700; font-weight: 600; display: none;">Timer Pausado*</p>
+
+    <div class="timer" id="timer">
       <div class="display">
         <p class="digit" id="hours">00</p>
         <p class="separator">:</p>
@@ -12,37 +14,17 @@
       </div>
 
       <div class="buttons">
-        <button id="startBtn">Iniciar</button>
-        <button id="pauseBtn" style="display: none;">Pausar</button>
-        <button id="resumeBtn" style="display: none;">Continuar</button>
-        <button id="resetBtn">Resetar</button>
+        <button id="startBtn" class="timer-button">Iniciar</button>
+        <button id="pauseBtn" style="display: none;" class="timer-button">Pausar</button>
+        <button id="resumeBtn" style="display: none;" class="timer-button">Continuar</button>
+        <form class="timer-form" method="POST" action="{% url 'studies:finalizar_sessao' %}">
+          {% csrf_token %}
+          <button id="finishBtn" style="display: none;" type="submit" class="timer-button">Finalizar</button>
+        </form>
       </div>
     </div>
   </div>
-
-  <form method="POST">
-    {% csrf_token %}
-
-    <label for="materia">
-      <span>Selecione Uma Materia</span>
-
-      <select name="materia" id="materia">
-        <option value="">------</option>
-        {% for materia in materias %}
-          <option value="{{ materia.nome }}">{{ materia.nome }}</option>
-        {% endfor %}
-      </select>
-    </label>
-
-    <label for="observacao">
-      <span>Observação (opcional)</span>
-      <textarea name="observacao" id="observacao" rows="5" placeholder="Ex: Revisão de Simulados"></textarea>
-    </label>
-
-    <button type="submit">Criar Sessão</button>
-  </form>
 {% endblock %}
-
 
 {% block scripts %}
   <script src="{% static 'js/timer.js' %}"></script>

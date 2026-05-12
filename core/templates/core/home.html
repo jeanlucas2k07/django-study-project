@@ -3,9 +3,11 @@
 
 {% block content %}
   {% if request.user.is_authenticated %}
-
     <div class="materias-container">
-      <a class="nova-materia-btn" href="{% url 'studies:cadastrar_materia' %}">Nova Matéria</a>
+      <div class="links-container">
+        <a class="nova-materia-btn" href="{% url 'studies:cadastrar_materia' %}">Nova Matéria</a>
+        <a class="nova-sessao-btn" href="{% url 'studies:nova_sessao' %}">Nova Sessão de Estudos</a>
+      </div>
 
       {% if not materias %}
         <p>Sem matérias cadastradas</p>

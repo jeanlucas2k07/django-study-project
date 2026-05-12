@@ -1,7 +1,9 @@
 from django.shortcuts import render, redirect
+from django.shortcuts import get_object_or_404
 from django.contrib.auth.decorators import login_required
-from .models import Materia
+from .models import Materia, SessaoEstudo
 from django.contrib import messages
+from datetime import datetime
 
 # Create your views here.
 @login_required
@@ -42,14 +44,19 @@ def cadastrar_materia_view(request):
 
 @login_required
 def editar_materia_view(request, materia_id):
-    materia = Materia.objects.get(id=materia_id, user=request.user)
+
+    materia = get_object_or_404(
+        Materia,
+        id=materia_id,
+        user=request.user
+    )
 
     if request.method == 'POST':
         nome = request.POST.get('nome')
         descricao = request.POST.get('descricao')
         cor = request.POST.get('cor')
 
-        if not cor or not descricao or not nome:
+        if not all([cor.strip(), descricao.strip(), nome.strip()]):
             messages.error(
                 request=request,
                 message='Preencha todos os campos'
@@ -60,9 +67,9 @@ def editar_materia_view(request, materia_id):
                 materia_id=materia_id
             )
 
-        materia.nome = nome
-        materia.descricao = descricao
-        materia.cor = cor
+        materia.nome = nome.strip()
+        materia.descricao = descricao.strip()
+        materia.cor = cor.strip()
 
         materia.save()
 
@@ -78,7 +85,7 @@ def editar_materia_view(request, materia_id):
 
 @login_required
 def deleter_materia_view(request, materia_id):
-    materia = Materia.objects.filter(id=materia_id)
+    materia = get_object_or_404(Materia, id=materia_id, user=request.user)
 
     if request.method == 'POST':
         materia.delete()
@@ -86,13 +93,23 @@ def deleter_materia_view(request, materia_id):
     return redirect('core:home')
 
 @login_required
-def criar_sessao_view(request):
+def timer_sessao_view(request):
+    return render(
+        request=request, 
+        template_name='studies/criar_sessao.html',
+    )
+
+@login_required
+def finalizar_sessao_view(request):
     materias = Materia.objects.filter(user=request.user)
     context={
         "materias": materias
     }
+
+    if request.method == 'POST':
+
     return render(
         request=request, 
-        template_name='studies/criar_sessao.html',
+        template_name='studies/finalizar_sessao.html',
         context=context
     )

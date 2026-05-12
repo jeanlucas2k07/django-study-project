@@ -37,7 +37,7 @@ class SessaoEstudo(models.Model):
         related_name='sessoes'
     )
 
-    duracao = models.PositiveIntegerField(
+    duracao = models.TimeField(
         'duração'
     )
     

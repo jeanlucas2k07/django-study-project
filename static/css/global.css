@@ -66,7 +66,9 @@ main {
 	min-width: 100%;
 	justify-content: center;
 	align-items: center;
+	min-height: 60vh;
 }
+
 
 .timer .display, .timer .buttons {
 	display: flex;
@@ -78,10 +80,18 @@ main {
 	gap: 1rem;
 }
 
-.timer .buttons button {
-	background-color: rgba(255, 145, 0, 0.315);
+.timer .buttons .timer-form {
+	display: contents;
+}
+
+.timer .buttons .timer-button {
+	appearance: none;
+	-webkit-appearance: none;
+	background: rgba(255, 145, 0, 0.315);
 	border-radius: 30px;
 	padding: 1rem;
+	line-height: 1;
+	font-size: 1rem;
 
 	border: 1px solid #ffa705;
 
@@ -96,12 +106,17 @@ main {
 	transition: all 0.3s ease-in-out;
 }
 
-.timer .buttons button:hover{
+.timer .buttons .timer-button:hover{
 	transform: translateY(-3px);
 }
 
 .timer .display p {
-	font-size: 3rem;
+	font-size: 8rem;
+	transition: all 0.3s ease;
+}
+
+.timer.active p {
+	font-size: 10rem;
 }
 
 .conteiner, .timer-container,
@@ -189,6 +204,11 @@ header > div > div {
 	box-shadow: 0 0 0 0.35rem rgba(52, 211, 153, 0.15);
 }
 
+
+.links-container {
+	display: flex;
+	gap: 1rem;
+}
 footer {
 	width: min(1120px, calc(100% - 2rem));
 	margin: 0 auto 1.5rem;
@@ -263,6 +283,7 @@ form select:focus {
 
 form button,
 .nova-materia-btn,
+.nova-sessao-btn,
 .editar-btn,
 .remover-btn {
 	display: inline-flex;
@@ -285,8 +306,17 @@ form button,
 	box-shadow: 0 16px 35px rgba(56, 189, 248, 0.28);
 }
 
+.nova-sessao-btn {
+	padding: 0.9rem 1.15rem;
+	background: linear-gradient(135deg, #ffb347, #f97316);
+	color: #1f1200;
+	box-shadow: 0 16px 35px rgba(249, 115, 22, 0.28);
+	border: 1px solid rgba(249, 115, 22, 0.35);
+}
+
 form button:hover,
 .nova-materia-btn:hover,
+.nova-sessao-btn:hover,
 .editar-btn:hover,
 .remover-btn:hover {
 	transform: translateY(-1px);
@@ -294,6 +324,7 @@ form button:hover,
 
 form button:active,
 .nova-materia-btn:active,
+.nova-sessao-btn:active,
 .editar-btn:active,
 .remover-btn:active {
 	transform: translateY(0);
@@ -328,6 +359,11 @@ form p {
 }
 
 .nova-materia-btn {
+	justify-self: start;
+	text-decoration: none;
+}
+
+.nova-sessao-btn {
 	justify-self: start;
 	text-decoration: none;
 }
