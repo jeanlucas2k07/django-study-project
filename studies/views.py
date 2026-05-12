@@ -107,6 +107,7 @@ def finalizar_sessao_view(request):
     }
 
     if request.method == 'POST':
+        ...
 
     return render(
         request=request, 
