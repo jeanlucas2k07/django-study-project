@@ -3,7 +3,7 @@ from django.shortcuts import get_object_or_404
 from django.contrib.auth.decorators import login_required
 from .models import Materia, SessaoEstudo
 from django.contrib import messages
-from datetime import datetime
+from datetime import time
 
 # Create your views here.
 @login_required
@@ -107,7 +107,38 @@ def finalizar_sessao_view(request):
     }
 
     if request.method == 'POST':
-        ...
+        materia = request.POST.get('materia')
+        observacoes = request.POST.get('observacoes')
+        duracao = request.POST.get('duracao')
+
+        if not all([materia, duracao.strip()]):
+            messages.error(
+                request=request,
+                message='Materia ou duração estão vazios'
+            )
+
+            redirect(
+                to='studies:finalizar_sessao'
+            )
+
+        duracao = int(duracao)
+
+        hours = duracao // 3600
+        minutes = (duracao % 3600) // 60
+        seconds = duracao % 60
+
+        duracao_formatada = time(
+            hour=hours,
+            minute=minutes,
+            second=seconds
+        )
+        
+        SessaoEstudo.objects.create(
+            user=request.user,
+            materia=Materia.objects.get(id=materia, user=request.user),
+            duracao=duracao_formatada,
+            observacoes=observacoes
+        )
 
     return render(
         request=request, 

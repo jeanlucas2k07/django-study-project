@@ -17,7 +17,7 @@
         <button id="startBtn" class="timer-button">Iniciar</button>
         <button id="pauseBtn" style="display: none;" class="timer-button">Pausar</button>
         <button id="resumeBtn" style="display: none;" class="timer-button">Continuar</button>
-        <form class="timer-form" method="POST" action="{% url 'studies:finalizar_sessao' %}">
+        <form class="timer-form" action="{% url 'studies:finalizar_sessao' %}">
           {% csrf_token %}
           <button id="finishBtn" style="display: none;" type="submit" class="timer-button">Finalizar</button>
         </form>
