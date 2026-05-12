@@ -21,7 +21,7 @@ def register_view(request):
                 to='auth:register'
             )
         
-        if not username or not email or not password or not confirm_password:
+        if not all([username.strip(), email.strip(), password.strip(), confirm_password.strip()]):
             messages.error(
                 request=request,
                 message='Preencha todos os campos'
@@ -92,13 +92,13 @@ def login_view(request):
         username = request.POST.get('username')
         password = request.POST.get('password')
 
-        if not username or not password:
+        if not all([username.strip(), password.strip()]):
             messages.error(
                 request=request,
                 message='Preencha os campos'
             )
 
-            return redirect('accounts:login')
+            return redirect('auth:login')
 
         user = authenticate(
             request=request,
@@ -118,10 +118,10 @@ def login_view(request):
         else:
             messages.error(
                 request=request,
-                message='Username ou senhas incorretos'
+                message='Usuário ou senhas inválidos'
             )
 
-            return redirect('accounts:login')
+            return redirect('auth:login')
     
     return render(
         request=request,
