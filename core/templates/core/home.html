@@ -20,7 +20,13 @@
         <div class="dash-card">
           <h3>⏱ Tempo Total</h3>
           <p>
-            <strong>{{ tempo_total }}</strong>
+            <strong>
+            {% if tempo_total is not None %}
+              {{ tempo_total }}
+              {% else %}
+              0
+            {% endif %}
+              </strong>
           </p>
         </div>
 
