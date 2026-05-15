@@ -3,7 +3,7 @@ from django.shortcuts import get_object_or_404
 from django.contrib.auth.decorators import login_required
 from .models import Materia, SessaoEstudo
 from django.contrib import messages
-from datetime import time
+from datetime import time, timedelta
 
 # Create your views here.
 @login_required
@@ -92,12 +92,14 @@ def deleter_materia_view(request, materia_id):
 
     return redirect('core:home')
 
+
 @login_required
 def timer_sessao_view(request):
     return render(
         request=request, 
         template_name='studies/criar_sessao.html',
     )
+
 
 @login_required
 def finalizar_sessao_view(request):
@@ -117,21 +119,13 @@ def finalizar_sessao_view(request):
                 message='Materia ou duração estão vazios'
             )
 
-            redirect(
+            return redirect(
                 to='studies:finalizar_sessao'
             )
 
         duracao = int(duracao)
 
-        hours = duracao // 3600
-        minutes = (duracao % 3600) // 60
-        seconds = duracao % 60
-
-        duracao_formatada = time(
-            hour=hours,
-            minute=minutes,
-            second=seconds
-        )
+        duracao_formatada = timedelta(seconds=duracao)
         
         SessaoEstudo.objects.create(
             user=request.user,

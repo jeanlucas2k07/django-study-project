@@ -3,6 +3,42 @@
 
 {% block content %}
   {% if request.user.is_authenticated %}
+    <div class="dashboard">
+      <div class="dashboard-header">
+        <h1>👋 Olá, {{ request.user.username }}!</h1>
+        <p>Como vão seus estudos hoje?</p>
+      </div>
+
+      <div class="dash-cards">
+        <div class="dash-card">
+          <h3>🔥 Sequência</h3>
+          <p>
+            <strong>{{ sequencia }}</strong> dias seguidos
+          </p>
+        </div>
+
+        <div class="dash-card">
+          <h3>⏱ Tempo Total</h3>
+          <p>
+            <strong>{{ tempo_total }}</strong>
+          </p>
+        </div>
+
+        <div class="dash-card">
+          <h3>📚 Matérias</h3>
+          <p>
+            <strong>{{ total_materias }}</strong> cadastradas
+          </p>
+        </div>
+
+        <div class="dash-card">
+          <h3>🧠 Sessões</h3>
+          <p>
+            <strong>{{ total_sessoes }}</strong> concluídas
+          </p>
+        </div>
+      </div>
+    </div>
     <div class="materias-container">
       <div class="links-container">
         <a class="nova-materia-btn" href="{% url 'studies:cadastrar_materia' %}">Nova Matéria</a>

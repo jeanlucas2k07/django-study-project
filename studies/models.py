@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+
 # Create your models here.
 class Materia(models.Model):
     """Model definition for Materia."""
@@ -37,7 +38,7 @@ class SessaoEstudo(models.Model):
         related_name='sessoes'
     )
 
-    duracao = models.TimeField(
+    duracao = models.DurationField(
         'duração'
     )
     
