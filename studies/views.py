@@ -126,6 +126,7 @@ def finalizar_sessao_view(request):
         duracao = int(duracao)
 
         duracao_formatada = timedelta(seconds=duracao)
+        print('Duração:', duracao_formatada)
         
         SessaoEstudo.objects.create(
             user=request.user,
